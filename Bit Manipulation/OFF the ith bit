@@ -1,0 +1,15 @@
+package bit_manipulate;
+import java.util.Scanner;
+public class Off_ith_bit {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Enter number");  //36
+	int number = sc.nextInt();
+	System.out.println("Enter i value");  //5
+	int i = sc.nextInt();
+	
+	int bit_mask = ~(1 << i);
+	System.out.println("after ith bit off: "+ (number & bit_mask)); // 4
+	sc.close();
+}
+}
