@@ -1,0 +1,19 @@
+package bit_manipulate;
+import java.util.Scanner;
+public class check_on_off {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+    System.out.println("Enter Input:"); // 5
+int n = sc.nextInt();
+    System.out.println("Enter i value:"); // 2
+int i = sc.nextInt();
+int mask = 1 <<i;
+int on_off = n & mask;
+    if(on_off != 0) {
+    System.out.println("On...");
+    }else {
+            System.out.println("Off...");
+    }
+    sc.close();
+}
+}
