@@ -1,0 +1,23 @@
+import java.util.Arrays;
+
+public class Selection_sort{
+static void insertionsort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n; i++) {
+        int min = i;
+        for (int j = i + 1; j<n; j++) {
+            if (arr[j] < arr[min]) {
+                min = j;
+            }
+        }
+        int cur = arr[min];
+        arr[min] = arr[i];
+        arr[i] = cur;
+    }
+}
+public static void main(String[] args) {
+    int[] arr = {18,18,46,12,14,0,25};
+    insertionsort(arr);
+    System.out.println(Arrays.toString(arr));
+}
+    }
