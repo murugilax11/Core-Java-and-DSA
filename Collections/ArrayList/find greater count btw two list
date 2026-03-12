@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class alice_bob {
+    static void find(ArrayList<Integer> arr, ArrayList<Integer> brr) {
+        int alice = 0;
+        int bob = 0;
+        for (int i = 0; i < 3; i++) {
+            if (arr.get(i) > brr.get(i))
+                alice++;
+            else if (arr.get(i) < brr.get(i))
+                bob++;
+        }
+        System.out.println(alice+" "+ bob);
+    }
+    public static void main(String[] args) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        ArrayList<Integer> brr = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < 3; i++) {
+            arr.add(sc.nextInt());
+        }
+        for (int i = 0; i < 3; i++) {
+            brr.add(sc.nextInt());
+        }
+        System.out.println(arr);
+        System.out.println(brr);
+        find(arr,brr);
+    }
+}
+
