@@ -1,0 +1,111 @@
+class Node1{
+    String name;
+    Node1 prev;
+    Node1 next;
+    Node1(String name){
+        this.name = name;
+    }
+}
+class Double_LinkedList {
+
+    Node1 head;
+    Node1 tail;
+
+    // Insert at Beginning
+    void insertAtBeginning(String name){
+        Node1 newNode = new Node1(name);
+
+        if(head == null){
+            head = tail = newNode;
+            return;
+        }
+
+        newNode.next = head;
+        head.prev = newNode;
+        head = newNode;
+    }
+
+    // Insert at End
+    void insertAtEnd(String name){
+        Node1 newNode = new Node1(name);
+
+        if(tail == null){
+            head = tail = newNode;
+            return;
+        }
+
+        newNode.prev = tail;
+        tail.next = newNode;
+        tail = newNode;
+    }
+
+    //remove at beginning
+    void removeAtBegin(){
+        if(head == null || head.next == null){
+            head = null;
+            return;
+        }
+        head = head.next;
+        head.prev = null;
+
+    }
+
+    // remove at last
+    void removeAtEnd(){
+        if(tail== null || tail.prev== null){
+            tail = null;
+            return;
+        }
+        tail = tail.prev;
+        tail.next = null;
+    }
+
+    // Print List
+    void print(){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node1 temp = head;
+
+        while(temp != null){
+            System.out.print(temp.name + "--->");
+            temp = temp.next;
+        }
+
+        System.out.println("null");
+    }
+
+    // print backward
+    void backward(){
+        if(tail == null){
+            return;
+        }
+        Node1 temp = tail;
+        while (temp != null){
+            System.out.print(temp.name+"-->");
+            temp = temp.prev;
+        }
+        System.out.print(temp);
+    }
+
+    public static void main(String[] args) {
+    Double_LinkedList dl = new Double_LinkedList();
+    dl.insertAtBeginning("ranjani");
+    dl.insertAtBeginning("uma");
+    dl.insertAtBeginning("gaya3");
+    dl.print();
+    dl.backward();
+    System.out.println();
+    dl.insertAtEnd("murugi");
+    dl.print();
+    dl.removeAtBegin();
+    dl.print();
+    dl.backward();
+
+    dl.removeAtEnd();
+    dl.print();
+    dl.backward();
+}
+}
