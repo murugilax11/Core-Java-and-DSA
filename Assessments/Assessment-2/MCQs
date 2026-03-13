@@ -1,0 +1,279 @@
+//1. 13
+class A {
+	static int x = 5;
+	static {
+		x = x * 2;
+	}
+}
+class B extends A {
+	static {
+		x = x + 3;
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		System.out.println(B.x);
+	}
+}
+
+//2. 0 -->This happens due to constructor calling overridden method before child initialization.Runtime Polymorphism.
+class A {
+	A() {
+		show();
+	}
+	void show() {
+		System.out.print("A ");
+	}
+}
+class B extends A {
+	int x = 10;
+	void show() {
+		System.out.print(x + " ");
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		new B();
+	}
+}
+
+//3. A
+class A {
+	static void show() {
+		System.out.print("A ");
+	}
+}
+class B extends A {
+	static void show() {
+		System.out.print("B ");
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		A obj = new B();
+		obj.show();
+	}
+}
+
+//4. I1
+interface I1 {
+	default void show() {
+		System.out.print("I1 ");
+	}
+}
+interface I2 {
+	default void show() {
+		System.out.print("I2 ");
+	}
+}
+class A implements I1, I2 {
+	public void show() {
+		I1.super.show();
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		new A().show();
+	}
+}
+
+//5. false
+class Test {
+	public static void main(String[] args) {
+		String s1 = "Java";
+		String s2 = "Ja";
+		String s3 = s2 + "va";
+		System.out.println(s1 == s3);
+	}
+}
+
+//6. true false
+class Test {
+	public static void main(String[] args) {
+		Integer a = 100;
+		Integer b = 100;
+		Integer c = 200;
+		Integer d = 200;
+		System.out.println((a==b) + " " + (c==d));
+	}
+}
+
+//7. ConcurrentModificationException
+class Test {
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<>();
+		list.add(10);
+		list.add(20);
+		for(Integer i : list) {
+			list.remove(i);
+		}
+	}
+}
+
+//8. [2, 3]
+class Test {
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.remove(Integer.valueOf(1));
+		System.out.println(list);
+	}
+}
+
+//9. 1
+class Test {
+	public static void main(String[] args) {
+		Map<Integer,String> map = new HashMap<>();
+		map.put(null,"A");
+		map.put(null,"B");
+		System.out.println(map.size());
+	}
+}
+
+//10. nullPointerException
+class Test {
+	public static void main(String[] args) {
+		Set<Integer> set = new TreeSet<>();
+		set.add(null);
+	}
+}
+
+//11. 10
+class Test {
+	static int x = 5;
+	static {
+		x = x + 3;
+	}
+	{
+		x++;
+	}
+	Test() {
+		x++;
+	}
+	public static void main(String[] args) {
+		new Test();
+		System.out.println(x);
+	}
+}
+
+//12. Java
+class Test {
+	public static void main(String[] args) {
+		List list = new ArrayList<Integer>();
+		list.add("Java");
+		System.out.println(list.get(0));
+	}
+}
+
+//13. 10
+class Test {
+	public static void main(String[] args) {
+		int x = 10;
+		Integer y = x;
+		x = 20;
+		System.out.println(y);
+	}
+}
+
+//14. AB
+class Test {
+	public static void main(String[] args) {
+		StringBuilder sb = new StringBuilder("A");
+		change(sb);
+		System.out.println(sb);
+	}
+	static void change(StringBuilder sb) {
+		sb.append("B");
+	}
+}
+
+//15. A
+class Test {
+	public static void main(String[] args) {
+		String s = "A";
+		change(s);
+		System.out.println(s);
+	}
+	static void change(String s) {
+		s = s + "B";
+	}
+}
+
+//16. true
+class Test {
+	public static void main(String[] args) {
+		int x = 10;
+		Integer y = x;
+		Integer z = x;
+		System.out.println(y==z);
+	}
+}
+
+//17. UnsupportedOperationException
+class Test {
+	public static void main(String[] args) {
+		List<Integer> list = Arrays.asList(1,2,3);
+		list.add(4);
+	}
+}
+
+//18. NullPointerException
+class Test {
+	public static void main(String[] args) {
+		Map<Integer,String> map = new TreeMap<>();
+		map.put(null,"A");
+	}
+}
+
+//19. 20
+class Test {
+	public static void main(String[] args) {
+		List<Integer> list = new ArrayList<>();
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		System.out.println(list.remove(1));
+	}
+}
+
+//20. true
+class Test {
+	public static void main(String[] args) {
+		String s1 = "Java";
+		String s2 = s1.intern();
+		System.out.println(s1==s2);
+	}
+}
+
+//21. Which collection is not thread-safe?(answer C)
+A) Vector
+B) Hashtable
+C) ArrayList
+D) Stack
+
+//22. Which map keeps sorted keys?(answer C)
+A) HashMap
+B) LinkedHashMap
+C) TreeMap
+D) Hashtable
+
+//23. Which collection allows one null element only?(answer A)
+A) HashSet
+B) TreeSet
+C) ArrayList
+D) LinkedList
+
+//24. Which method removes element by object value?(answer B)
+A) remove(int)
+B) remove(Object)
+C) delete()
+D) pop()
+
+//25. Which Java feature allows:(answer B)
+List list = new ArrayList<Integer>();
+A) Generics
+B) Raw types
+C) Autoboxing
+D) Type inference
