@@ -1,0 +1,59 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Queue1{
+    int arr[];
+    int front;
+    int rear;
+    int size;
+    Queue1(int size){
+        this.size = size;
+        arr = new int[size];
+        front =0;
+        rear = -1;
+    }
+    void add(int val){
+        if(!isFull()){
+            arr[++rear] = val;
+            return;
+        }
+        System.out.println("over flow");
+    }
+    int poll(){
+        if(!isEmpty()){
+            int ele = arr[front++];
+            return ele;
+        }
+        System.out.println("Empty");
+        return -1;
+    }
+    int peek(){
+        if(!isEmpty()){
+            int ele = arr[front];
+            return ele;
+        }
+        System.out.println("Empty");
+        return-1;
+    }
+    boolean isFull(){
+        return rear == size -1;
+    }
+    boolean isEmpty(){
+        return  rear == front -1;
+    }
+
+}
+public class MyQueue {
+    public static void main(String[] args) {
+        Queue1 qu = new Queue1(6);
+         qu.add(10);
+         qu.add(20);
+         qu.add(30);
+         qu.add(40);
+         qu.poll();
+         qu.isEmpty();
+         qu.poll();
+         qu.isEmpty();
+         System.out.println(qu.peek());
+    }
+}
