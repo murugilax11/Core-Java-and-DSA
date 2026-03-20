@@ -1,0 +1,92 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data = data;
+        left = right = null;
+    }
+}
+public class BinaryTree {
+    static Node buildTree(String s){
+        if(s.length() == 0 || s.equals(-1)){
+            return null;
+        }
+        String[] values = s.split(" ");
+        Node root = new Node(Integer.parseInt(values[0]));
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        int i =1;
+        while (!q.isEmpty() && i <values.length){
+            Node cur  = q.poll();
+            if(!values[i].equals("-1")){
+                Node newNode = new Node(Integer.parseInt(values[i]));
+                cur.left = newNode;
+                q.add(newNode);
+            }
+            i++;
+            if(i>=values.length)break;
+            if(!values[i].equals("-1")){
+                Node newNode = new Node(Integer.parseInt(values[i]));
+                cur.right = newNode;
+                q.add(newNode);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    // Inorder Traversal
+    static void inOrder(Node root){
+        if(root == null)return;
+        inOrder(root.left);
+        System.out.print(root.data+"-->");
+        inOrder(root.right);
+    }
+    //Pre Order Traversal
+    static void preOrder(Node root){
+        if(root == null)return;
+        System.out.print(root.data+"-->");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+    // Post Order Traversal
+    static void postOrder(Node root){
+        if(root == null)return;
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data+"-->");
+    }
+    // Level Order Travelsal
+    static void levelOrder(Node root){
+        if(root == null) return;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()){
+            Node cur = q.poll();
+            System.out.print(cur.data+"-->");
+            if(cur.left != null) {
+                q.add(cur.left);
+            }
+            if (cur.right != null) {
+                q.add(cur.right);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        Node root = buildTree(s);
+        inOrder(root);
+        System.out.println();
+        preOrder(root);
+        System.out.println();
+        postOrder(root);
+        System.out.println();
+        levelOrder(root);
+    }
+}
